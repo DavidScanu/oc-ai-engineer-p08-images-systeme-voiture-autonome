@@ -116,7 +116,7 @@ npm install
 npm run dev
 ```
 
-## 🌐 Démonstration
+## 🏆 Démonstration
 
 - **API** : [https://oc-p8-segmentation-api.herokuapp.com/docs](https://oc-p8-segmentation-api.herokuapp.com/docs)
 - **Frontend** : [https://oc-p8-segmentation-frontend.herokuapp.com](https://oc-p8-segmentation-frontend.herokuapp.com)
@@ -124,16 +124,12 @@ npm run dev
 ## 📊 Résultats
 
 Le modèle de segmentation atteint les performances suivantes sur le jeu de test :
-- **IoU moyen** : 0.85
-- **Précision** : 0.92
-- **Recall** : 0.89
+- **IoU moyen** : 
+- **Précision** : 
+- **Recall** : 
 
 Ces résultats démontrent la capacité du modèle à identifier correctement les différentes catégories d'objets dans des conditions variées.
 
-## 📜 Licence
-
-Ce projet est développé dans le cadre d'une formation et n'est pas sous licence open source.
-
-## 👨‍💻 À propos
+## 👋 À propos
 
 Projet développé par [David Scanu](https://www.linkedin.com/in/davidscanu14/) dans le cadre du parcours [AI Engineer](https://openclassrooms.com/fr/paths/795-ai-engineer) d'OpenClassrooms : *Projet 8 - **Traitez les images pour le système embarqué d'une voiture autonome*.
