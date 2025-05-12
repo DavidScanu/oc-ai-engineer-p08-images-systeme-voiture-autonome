@@ -1,4 +1,4 @@
-# 🚗 Projet 8 : Traitement d'images pour le système embarqué d'une voiture autonome
+# Projet 8 : Traitement d'images pour le système embarqué d'une voiture autonome
 
 ![Keras](https://img.shields.io/badge/Keras-Framework-D00000?logo=keras&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-async%20API-009688?logo=fastapi&logoColor=white)
