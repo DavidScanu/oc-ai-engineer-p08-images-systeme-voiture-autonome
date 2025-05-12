@@ -132,4 +132,4 @@ Ces résultats démontrent la capacité du modèle à identifier correctement le
 
 ## 👋 À propos
 
-Projet développé par [David Scanu](https://www.linkedin.com/in/davidscanu14/) dans le cadre du parcours [AI Engineer](https://openclassrooms.com/fr/paths/795-ai-engineer) d'OpenClassrooms : *Projet 8 - **Traitez les images pour le système embarqué d'une voiture autonome*.
+Projet développé par [David Scanu](https://www.linkedin.com/in/davidscanu14/) dans le cadre du parcours [AI Engineer](https://openclassrooms.com/fr/paths/795-ai-engineer) d'OpenClassrooms : **Projet 8 - Traitez les images pour le système embarqué d'une voiture autonome**.
