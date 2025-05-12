@@ -8,18 +8,6 @@
 
 > 🎓 OpenClassrooms • Parcours [AI Engineer](https://openclassrooms.com/fr/paths/795-ai-engineer) | 👋 *Étudiant* : [David Scanu](https://www.linkedin.com/in/davidscanu14/)
 
-## 📋 Table des matières
-- [Contexte](#-contexte)
-- [Mission](#-mission)
-- [Objectifs pédagogiques](#-objectifs-pédagogiques)
-- [Plan de travail](#-plan-de-travail)
-- [Livrables](#-livrables)
-- [Technologies utilisées](#-technologies-utilisées)
-- [Architecture](#-architecture)
-- [Installation](#-installation)
-- [Démonstration](#-démonstration)
-- [Résultats](#-résultats)
-
 ## 🌐 Contexte
 Ce projet s'inscrit dans le développement d'un **système embarqué de vision par ordinateur** pour véhicules autonomes chez **Future Vision Transport**. L'entreprise conçoit des systèmes permettant aux véhicules autonomes de percevoir leur environnement grâce à l'analyse d'images en temps réel.
 
