@@ -1,10 +1,10 @@
 # 🚗 Projet 8 : Traitement d'images pour le système embarqué d'une voiture autonome
 
-![TensorFlow](https://img.shields.io/badge/TensorFlow-2.19-FF6F00?logo=tensorflow&logoColor=white)
+![Keras](https://img.shields.io/badge/Keras-Framework-D00000?logo=keras&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-async%20API-009688?logo=fastapi&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-frontend-000000?logo=next.js&logoColor=white)
-[![Pytest](https://img.shields.io/github/actions/workflow/status/DavidScanu/oc-ai-engineer-p08-systeme-voiture-autonome/heroku-deploy.yml?label=pytest&logo=pytest&logoColor=white)](https://github.com/DavidScanu/oc-ai-engineer-p08-systeme-voiture-autonome/actions/workflows/heroku-deploy.yml)
-[![Deploy to Heroku](https://github.com/DavidScanu/oc-ai-engineer-p08-systeme-voiture-autonome/actions/workflows/heroku-deploy.yml/badge.svg)](https://github.com/DavidScanu/oc-ai-engineer-p08-systeme-voiture-autonome/actions/workflows/heroku-deploy.yml)
+[![Pytest](https://img.shields.io/badge/Pytest-passing-success?logo=pytest&logoColor=white)](https://github.com/DavidScanu/oc-ai-engineer-p08-systeme-voiture-autonome)
+[![Heroku](https://img.shields.io/badge/Heroku-deployed-success?logo=heroku&logoColor=white)](https://dashboard.heroku.com/)
 
 > 🎓 OpenClassrooms • Parcours [AI Engineer](https://openclassrooms.com/fr/paths/795-ai-engineer) | 👋 *Étudiant* : [David Scanu](https://www.linkedin.com/in/davidscanu14/)
 
