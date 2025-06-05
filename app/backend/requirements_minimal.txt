@@ -1,0 +1,9 @@
+# app/fastapi/requirements_minimal.txt
+fastapi
+uvicorn[standard]
+python-multipart
+tensorflow==2.18.0
+pillow
+mlflow-skinny==2.22.0  # Version allégée de MLflow
+boto3
+python-dotenv

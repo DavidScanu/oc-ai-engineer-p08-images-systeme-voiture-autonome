@@ -1,0 +1,1 @@
+from schemas.prediction import PredictionResponse, ErrorResponse
