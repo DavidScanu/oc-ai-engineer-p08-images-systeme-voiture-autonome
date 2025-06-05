@@ -1,0 +1,7 @@
+Métrique,Valeur
+Précision globale,0.8795
+Mean IoU,0.6325
+Meilleure classe (IoU),flat (0.9084)
+Pire classe (IoU),object (0.0648)
+Nombre d'images évaluées,500
+Date d'évaluation,2025-05-23 09:11:19
