@@ -1,4 +1,5 @@
 # app/backend/routers/segmentation.py
+import json
 from fastapi import APIRouter, File, UploadFile, HTTPException
 from fastapi.responses import JSONResponse
 from PIL import Image
