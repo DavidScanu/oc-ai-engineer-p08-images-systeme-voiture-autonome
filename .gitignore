@@ -1,3 +1,16 @@
+# This file is a template for Python projects. It is meant to be used as a starting point
+# for creating a .gitignore file for Python projects. It includes common patterns to ignore
+# Python bytecode files, distribution files, virtual environments, and other common files
+# that should not be tracked by version control systems like Git.
+# Python.gitignore
+# Edit this file to suit your project's needs.
+# For more information, see https://git-scm.com/docs/gitignore
+
+# Project exclusions
+#  Add any project-specific exclusions here. These will override the global patterns below.
+app/backend/predictions
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

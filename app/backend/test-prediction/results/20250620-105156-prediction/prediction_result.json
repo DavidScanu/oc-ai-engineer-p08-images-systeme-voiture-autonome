@@ -1,0 +1,57 @@
+{
+  "class_statistics": [
+    {
+      "class_id": 0,
+      "class_name": "flat",
+      "pixel_count": 21371,
+      "percentage": 42.592075892857146
+    },
+    {
+      "class_id": 5,
+      "class_name": "nature",
+      "pixel_count": 15523,
+      "percentage": 30.937101403061224
+    },
+    {
+      "class_id": 3,
+      "class_name": "construction",
+      "pixel_count": 4700,
+      "percentage": 9.36702806122449
+    },
+    {
+      "class_id": 2,
+      "class_name": "vehicle",
+      "pixel_count": 3039,
+      "percentage": 6.056680484693878
+    },
+    {
+      "class_id": 7,
+      "class_name": "void",
+      "pixel_count": 2994,
+      "percentage": 5.966996173469387
+    },
+    {
+      "class_id": 6,
+      "class_name": "sky",
+      "pixel_count": 2220,
+      "percentage": 4.424426020408164
+    },
+    {
+      "class_id": 4,
+      "class_name": "object",
+      "pixel_count": 290,
+      "percentage": 0.5779655612244898
+    },
+    {
+      "class_id": 1,
+      "class_name": "human",
+      "pixel_count": 39,
+      "percentage": 0.07772640306122448
+    }
+  ],
+  "image_size": [
+    224,
+    224
+  ],
+  "num_classes": 8
+}

@@ -1,4 +1,3 @@
-# app/fastapi/test_api.py
 import requests
 import json
 from PIL import Image

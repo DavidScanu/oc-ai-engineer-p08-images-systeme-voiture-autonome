@@ -1,4 +1,4 @@
-# app/fastapi/routers/segmentation.py
+# app/backend/routers/segmentation.py
 from fastapi import APIRouter, File, UploadFile, HTTPException
 from fastapi.responses import JSONResponse
 from PIL import Image
@@ -21,7 +21,7 @@ async def predict_segmentation(file: UploadFile = File(...)):
         file: Image uploadée (JPEG, PNG, etc.)
     
     Returns:
-        PredictionResponse: Masque de prédiction et statistiques
+        PredictionResponse: Masques, visualisations et statistiques
     """
     try:
         # Vérifier le type de fichier
@@ -36,9 +36,9 @@ async def predict_segmentation(file: UploadFile = File(...)):
         if not validate_image(image):
             raise HTTPException(status_code=400, detail="Image trop grande (max 4096x4096)")
         
-        # Faire la prédiction
+        # Faire la prédiction avec génération des artefacts
         logger.info(f"Prédiction pour l'image: {file.filename}")
-        result = predictor.predict(image)
+        result = predictor.predict_with_artifacts(image, filename=file.filename)
         
         return PredictionResponse(**result)
         
@@ -54,10 +54,32 @@ async def health_check():
 @router.get("/model/info")
 async def model_info():
     """Informations sur le modèle"""
-    return {
-        "model_name": "MobileNetV2-UNet",
-        "input_size": list(predictor.model.input_shape[1:3]),
-        "num_classes": len(predictor.class_mapping['group_names']),
-        "class_names": predictor.class_mapping['group_names'],
-        "class_colors": predictor.class_mapping['group_colors']
-    }
+    return predictor.get_model_info()
+
+@router.get("/predictions")
+async def list_predictions():
+    """Liste les prédictions effectuées"""
+    import os
+    predictions_dir = "predictions"
+    
+    if not os.path.exists(predictions_dir):
+        return {"predictions": []}
+    
+    predictions = []
+    for folder in sorted(os.listdir(predictions_dir), reverse=True):
+        if folder.endswith("-result"):
+            folder_path = os.path.join(predictions_dir, folder)
+            result_file = os.path.join(folder_path, "prediction_result.json")
+            
+            if os.path.exists(result_file):
+                with open(result_file, 'r') as f:
+                    data = json.load(f)
+                predictions.append({
+                    "timestamp": data.get("timestamp"),
+                    "filename": data.get("filename"),
+                    "dominant_class": data.get("dominant_class"),
+                    "dominant_class_percentage": data.get("dominant_class_percentage"),
+                    "folder": folder
+                })
+    
+    return {"predictions": predictions[:20]}  # Dernières 20 prédictions
