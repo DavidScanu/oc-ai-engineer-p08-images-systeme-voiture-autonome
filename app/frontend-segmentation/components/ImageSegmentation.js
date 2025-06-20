@@ -2,6 +2,8 @@
 
 import React, { useState, useRef } from 'react';
 import LoadingOverlay from '@/components/LoadingOverlay';
+import AvailableClasses from '@/components/AvailableClasses';
+import ModelInfo from '@/components/ModelInfo';
 
 const ImageSegmentation = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -83,8 +85,21 @@ const ImageSegmentation = () => {
       {loading && <LoadingOverlay message={loadingProgress} />}
       <div className="row">
         <div className="col-12">
-          <h1 className="text-center mb-4">Segmentation Sémantique d'Images</h1>
-          
+
+          <div className="text-center mb-4">
+            <img src="logo-future-vision-transport.png" alt="Logo Future Vision Transport" className="img-fluid mb-0" style={{ maxWidth: '200px' }} />
+            <h1>Future Vision Transport</h1>
+            <p className="lead">Segmentation d'Images pour Véhicules Autonomes</p>
+            <div>
+              <p className="mb-1">
+                Cette application permet de segmenter des images pour détecter les objets et les classes présents dans l'environnement d'un véhicule autonome.</p>
+              <p>Envoyez une image pour voir la segmentation sémantique en action.</p>
+            </div>
+
+            <AvailableClasses apiUrl={`${API_BASE_URL}/model/info`} />
+
+          </div>
+
           {/* Formulaire d'upload */}
           <div className="card mb-4">
             <div className="card-header">
