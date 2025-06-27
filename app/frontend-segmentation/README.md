@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend Segmentation avec Next.js
 
-## Getting Started
+## Variables d'environnement
 
-First, run the development server:
+Avant de démarrer le projet, assurons-nous de configurer les variables d'environnement nécessaires. Nous devons définir dans un fichier `.env.local` les variables suivantes :
+
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1/segmentation
+```
+
+## Lancer l'interface utilisateur "Future Vison Transport" 
+
+## 1. Lancer l'API FastAPI
+
+Nous devons démarrer l'API de prédiction en mode développement avec la commande suivante :
+
+```bash
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+## 2. Lancer l'interface utilisateur Next.js
+
+Pour démarrer l'interface utilisateur Next.js, nous utilisons la commande suivante :
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 3. Pour accéder à l'application
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Nous ouvrons notre navigateur et accédons à l'URL suivante :
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+http://localhost:3000
+```
 
-## Learn More
+## Déploiement sur Vercel
 
-To learn more about Next.js, take a look at the following resources:
+Pour déployer l'application Next.js, nous pouvons utiliser la plateforme Vercel.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Rendez-vous sur [https://vercel.com/](https://vercel.com/) et nous nous connectons avec notre compte GitHub.
+2. Nous cliquons sur **"New Project"** et importons le dépôt contenant notre projet Next.js.
+3. Nous sélectionnons le dépôt, puis cliquons sur **"Import"**.
+4. Nous configurons les variables d'environnement dans l'onglet **"Environment Variables"**
+  - `NEXT_PUBLIC_API_URL` : URL de l'API de prédiction FastAPI (par exemple, `http://localhost:8000/api/v1/segmentation` pour le développement local ou l'URL de l'API déployée en production).
+5. Nous cliquons sur **"Deploy"** pour lancer le déploiement.
+6. Une fois le déploiement terminé, nous accedons à l'URL fournie par Vercel pour voir notre application en ligne.

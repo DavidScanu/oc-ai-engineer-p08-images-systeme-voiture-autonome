@@ -96,8 +96,17 @@ Elle expose plusieurs endpoints pour prédire, obtenir des informations sur le m
 ---
 
 
-
 ## Lancement de l'API
+
+### Variables d'environnement
+
+Avant de démarrer l'API, assurez-vous de configurer les variables d'environnement nécessaires. Vous devez définir dans un fichier ``.env`, les variables suivantes :
+- `MLFLOW_TRACKING_URI` : URL de votre serveur MLflow (par exemple, `https://mlflow.yourdomain.com`)
+- `AWS_ACCESS_KEY_ID` : Clé d'accès AWS pour MLflow
+- `AWS_SECRET_ACCESS_KEY` : Clé secrète AWS pour MLflow
+- `RUN_ID` : ID du run MLflow que vous souhaitez utiliser pour les prédictions
+- `FRONTEND_URL` : URL de votre frontend (pour éviter les erreurs CORS : `http://localhost:3000` ou `https://your-frontend-url.com`)
+- `PORT` : Port sur lequel l'API sera accessible (par défaut `8000`)
 
 ### En local (développement et production)
 
@@ -145,7 +154,13 @@ web: gunicorn main:app -k uvicorn.workers.UvicornWorker --workers 1 --threads 4 
 
 2. **Dans le navigateur** :
    - Créer un service si nécessaire
-   - Configurer les variables d'environnement
+   - **Configurer les variables d'environnement**
+     - FRONTEND_URL: `https://your-frontend-url.com` (ou l'URL de votre frontend) (pour éviter les erreurs CORS)
+     - PORT: `8000`
+     - MLFLOW_TRACKING_URI : URL de votre serveur MLflow (par exemple, `https://mlflow.yourdomain.com`)
+     - AWS_ACCESS_KEY_ID : Clé d'accès AWS pour MLflow
+     - AWS_SECRET_ACCESS_KEY : Clée secrète AWS pour MLflow
+     - RUN_ID : ID du run MLflow que vous souhaitez utiliser pour les prédictions
    - Dans l'onglet "Settings" du service :
      - Root Directory: `/` (puisque vous êtes déjà dans app/backend)
      - Watch Patterns: laissez par défaut
