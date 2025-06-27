@@ -1,7 +1,21 @@
 # Backend : FastAPI
 
+Lancement en local : 
+
 ```bash
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+
+Lancement sur le serveur (déploiement) : 
+
+```bash
+uvicorn main:app --host 0.0.0.0 --port $PORT
+```
+
+
+```bash
+python main.py
 ```
 
 

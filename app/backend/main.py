@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 import os
+import uvicorn
 
 from routers import segmentation
 from config import settings
@@ -18,11 +19,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Configuration CORS pour Heroku
+# Configuration CORS
 origins = [
     "http://localhost:3000",
     "https://localhost:3000",
-    os.getenv("FRONTEND_URL", "*"),  # URL de votre frontend
+    os.getenv("FRONTEND_URL", "*"),
 ]
 
 app.add_middleware(
@@ -62,3 +63,8 @@ async def startup_event():
     logger.info(f"Port: {settings.PORT}")
     logger.info(f"MLflow tracking URI: {settings.MLFLOW_TRACKING_URI}")
     logger.info(f"Run ID: {settings.RUN_ID}")
+
+# ⬇️ Ajout du bloc principal pour exécution directe
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
