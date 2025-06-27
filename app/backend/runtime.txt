@@ -1,2 +1,0 @@
-# app/backend/runtime.txt
-python-3.10.12
