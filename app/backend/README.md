@@ -6,19 +6,11 @@ Lancement en local :
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-
 Lancement sur le serveur (déploiement) : 
 
 ```bash
-uvicorn main:app --host 0.0.0.0 --port $PORT
+uvicorn main:app --reload --host 0.0.0.0 --port ${PORT:-8000}
 ```
-
-
-```bash
-python main.py
-```
-
-
 
 ## Déploiement 
 
