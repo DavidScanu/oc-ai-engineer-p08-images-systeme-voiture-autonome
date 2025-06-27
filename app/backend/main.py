@@ -1,7 +1,8 @@
-# app/fastapi/main.py
+# app/backend/main.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import logging
+import os
 
 from routers import segmentation
 from config import settings
@@ -17,10 +18,16 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Configuration CORS
+# Configuration CORS pour Heroku
+origins = [
+    "http://localhost:3000",
+    "https://localhost:3000",
+    os.getenv("FRONTEND_URL", "*"),  # URL de votre frontend
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # À restreindre en production
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -39,6 +46,7 @@ async def root():
     return {
         "message": "API de segmentation sémantique Cityscapes",
         "version": "1.0.0",
+        "status": "running on Heroku" if settings.IS_HEROKU else "running locally",
         "endpoints": {
             "predict": "/api/v1/segmentation/predict",
             "health": "/api/v1/segmentation/health",
@@ -50,5 +58,7 @@ async def root():
 async def startup_event():
     """Événement au démarrage de l'application"""
     logger.info("Démarrage de l'API...")
+    logger.info(f"Running on Heroku: {settings.IS_HEROKU}")
+    logger.info(f"Port: {settings.PORT}")
     logger.info(f"MLflow tracking URI: {settings.MLFLOW_TRACKING_URI}")
     logger.info(f"Run ID: {settings.RUN_ID}")

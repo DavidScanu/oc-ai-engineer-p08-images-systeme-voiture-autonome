@@ -1,17 +1,24 @@
-# app/fastapi/config.py
+# app/backend/config.py
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
 class Settings:
+    # Configuration MLflow
     MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI")
     AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
     RUN_ID = os.getenv("RUN_ID")
+    
+    # Configuration du modèle
     MODEL_NAME = "cityscapes_segmentation"
     IMG_SIZE = (224, 224)
     NUM_CLASSES = 8
+    
+    # Configuration Heroku
+    PORT = int(os.getenv("PORT", 8000))
+    IS_HEROKU = os.getenv("DYNO") is not None
     
     # Noms et couleurs des classes
     GROUP_NAMES = ['flat', 'human', 'vehicle', 'construction', 'object', 'nature', 'sky', 'void']
