@@ -152,6 +152,10 @@ web: gunicorn main:app -k uvicorn.workers.UvicornWorker --workers 1 --threads 4 
 
 3. **Déployer depuis la CLI** :
 
+### Installation de la CLI Railway
+
+Pour déployer l'API de segmentation sémantique sur Railway, suivez ces étapes :
+
 1. **Connexion à Railway** :
    ```bash
    railway login
