@@ -9,7 +9,7 @@
 # Project exclusions
 #  Add any project-specific exclusions here. These will override the global patterns below.
 app/backend/predictions
-
+urls.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
