@@ -3,133 +3,228 @@
 ![Keras](https://img.shields.io/badge/Keras-Framework-D00000?logo=keras&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-async%20API-009688?logo=fastapi&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-frontend-000000?logo=next.js&logoColor=white)
-[![Pytest](https://img.shields.io/badge/Pytest-passing-success?logo=pytest&logoColor=white)](https://github.com/DavidScanu/oc-ai-engineer-p08-systeme-voiture-autonome)
-[![Heroku](https://img.shields.io/badge/Heroku-deployed-success?logo=heroku&logoColor=white)](https://dashboard.heroku.com/)
+![Railway](https://img.shields.io/badge/Railway-deployment-0B0D0E?logo=railway&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-frontend-000000?logo=vercel&logoColor=white)
 
 > 🎓 OpenClassrooms • Parcours [AI Engineer](https://openclassrooms.com/fr/paths/795-ai-engineer) | 👋 *Étudiant* : [David Scanu](https://www.linkedin.com/in/davidscanu14/)
 
 ## 🌐 Contexte
+
 Ce projet s'inscrit dans le développement d'un **système embarqué de vision par ordinateur** pour véhicules autonomes chez **Future Vision Transport**. L'entreprise conçoit des systèmes permettant aux véhicules autonomes de percevoir leur environnement grâce à l'analyse d'images en temps réel.
 
 ## ⚡ Mission
-En tant qu'ingénieur IA dans l'équipe R&D, notre mission est de **développer le module de segmentation d'images** (composant 3) qui s'intègre entre le module de traitement d'images (2) et le système de décision (4). Ce module doit être capable d'**identifier et de segmenter précisément 8 catégories principales d'objets** dans des images de caméras embarquées.
 
-## 🎯 Objectifs pédagogiques
-- Développer un modèle de segmentation d'images performant avec Keras/TensorFlow
-- Concevoir et déployer une API REST avec FastAPI
-- Créer une application web de démonstration avec Next.js
-- Mettre en place un pipeline d'entraînement et de déploiement complet
-- Évaluer et améliorer les performances du modèle
-- Documenter le processus et les résultats de façon claire et professionnelle
+En tant qu'ingénieur IA dans l'équipe R&D, notre mission est de **développer le module de segmentation d'images** (composant 3) qui s'intègre entre le module de traitement d'images (2) et le système de décision (4). Ce module doit être capable d'**identifier et de segmenter précisément 8 catégories principales d'objets** dans des images de caméras embarquées utilisant le dataset Cityscapes.
 
-## 🗓️ Plan de travail
-
-1. **Exploration et préparation des données**
-   - Analyse du jeu de données fourni par Franck (images et masques segmentés)
-   - Prétraitement et augmentation des données
-   - Création d'un générateur de données optimisé
-
-2. **Développement du modèle de segmentation**
-   - Étude des architectures de l'état de l'art (U-Net, DeepLabV3+, etc.)
-   - Implémentation avec Keras
-   - Entraînement et optimisation du modèle
-
-3. **Déploiement du modèle**
-   - Développement d'une API FastAPI
-   - Création d'une application frontend Next.js
-   - Déploiement sur Heroku
-
-4. **Évaluation et documentation**
-   - Tests et validation des performances
-   - Rédaction du rapport technique
-   - Préparation de la présentation
-
-## 📦 Livrables
-- **Notebook** : Scripts développés permettant l'exécution du pipeline complet
-- **API** : Service FastAPI déployé sur Heroku qui prend une image en entrée et retourne le masque prédit
-- **Application Frontend** : Interface Next.js pour tester l'API et visualiser les résultats
-- **Rapport technique** : Document de 10 pages présentant les approches, l'architecture et les résultats
-- **Présentation** : Support Google Slides (30 slides maximum) pour présenter la démarche méthodologique
-
-## 🔧 Technologies utilisées
-- **Deep Learning** : TensorFlow, Keras
-- **Backend** : FastAPI, Uvicorn, Pydantic
-- **Frontend** : Next.js, React, Bootsrap
-- **Déploiement** : Heroku, Docker, GitHub Actions
-- **Autres** : NumPy, Pandas, Matplotlib, OpenCV
-
-## 🏗️ Architecture
-Le projet est organisé selon l'architecture suivante :
-
+### 🏗️ Architecture du Système Embarqué
 ```
-├── api/                 # Service FastAPI
-│   ├── app/             # Code de l'API
-│   ├── model/           # Modèle entraîné
-│   ├── Dockerfile       # Configuration pour Docker
-│   └── requirements.txt # Dépendances Python
-├── frontend/            # Application Next.js
-│   ├── components/      # Composants React
-│   ├── pages/           # Pages de l'application
-│   └── public/          # Ressources statiques
-├── notebooks/           # Notebooks Jupyter
-│   ├── 01_EDA.ipynb     # Exploration des données
-│   ├── 02_Model.ipynb   # Développement du modèle
-│   └── 03_Evaluation.ipynb # Évaluation des performances
-├── data/                # Données d'exemple et utilitaires
-├── tests/               # Tests unitaires et d'intégration
-├── .github/workflows/   # Configuration CI/CD
-└── docs/                # Documentation additionnelle
+[1] Acquisition → [2] Traitement → [3] SEGMENTATION → [4] Décision
+   d'images      d'images         (Notre rôle)      finale
 ```
 
-## 🚀 Installation
+## 🎯 Objectifs Techniques
 
-### Prérequis
-- Python 3.9+
+- **Modèle IA** : Développer un modèle de segmentation sémantique MobileNetV2-UNet avec Keras/TensorFlow
+- **API Production** : Concevoir et déployer une API REST avec FastAPI sur Railway
+- **Interface Demo** : Créer une application web de visualisation avec Next.js sur Vercel
+- **Pipeline MLOps** : Mettre en place un suivi d'expériences avec MLflow
+- **Documentation** : Produire un rapport technique et une présentation professionnelle
+
+## 🗓️ Méthodologie
+
+### 1. **Exploration et Préparation des Données**
+- Analyse du dataset **Cityscapes** (5000 images annotées, 50 villes européennes)
+- **Regroupement de 30+ classes** en 8 catégories pertinentes pour la navigation
+- **Pipeline de préprocessing** : Redimensionnement 2048×1024 → 224×224
+- **Augmentation de données** : Flip horizontal, variations de luminosité
+
+### 2. **Développement du Modèle**
+- **Architecture hybride** : MobileNetV2 (encodeur) + U-Net (décodeur)
+- **Transfer learning** : Encodeur pré-entraîné sur ImageNet (gelé)
+- **Entraînement** : 18 époques, callbacks optimisés (EarlyStopping, ReduceLROnPlateau)
+- **Suivi MLflow** : Versioning et traçabilité des expériences
+
+### 3. **Déploiement et Interface**
+- **API FastAPI** : Endpoints de prédiction avec génération d'artefacts visuels
+- **Frontend Next.js** : Interface intuitive d'upload et visualisation
+- **Architecture cloud** : Railway (backend) + Vercel (frontend)
+
+### 4. **Évaluation et Optimisation**
+- **Métriques** : Mean IoU, Précision pixel-wise, Analyse par classe
+- **Validation rigoureuse** : Train/Val/Test split avec prévention du data leakage
+
+## 🏗️ Architecture du Projet
+
+```
+oc-ai-engineer-p08-images-systeme-voiture-autonome/
+├── app/
+│   ├── backend/                 # API FastAPI
+│   │   ├── main.py             # Point d'entrée FastAPI
+│   │   ├── config.py           # Configuration et variables
+│   │   ├── models/
+│   │   │   └── predictor.py    # Logique de prédiction
+│   │   ├── routers/
+│   │   │   └── segmentation.py # Endpoints API
+│   │   ├── schemas/
+│   │   │   └── prediction.py   # Modèles Pydantic
+│   │   ├── utils/
+│   │   │   └── image_processing.py
+│   │   └── requirements.txt
+│   └── frontend/               # Application Next.js
+│       ├── components/         # Composants React
+│       ├── pages/             # Pages de l'application
+│       ├── public/            # Ressources statiques
+│       ├── package.json
+│       └── next.config.js
+├── notebooks/                  # Développement du modèle
+│   └── p08_david_scanu_notebook_MobileNetV2_UNet.ipynb.ipynb
+├── docs/                      # Documentation
+│   ├── p08_david_scanu_rapport_technique.pdf
+│   └── p08_david_scanu_presentation.pdf
+├── app/backend/railway.json   # Config déploiement Railway
+└── README.md
+```
+
+## 🔧 Technologies Utilisées
+
+### **Deep Learning & Data Science**
+- **TensorFlow 2.18** / **Keras 3.x** : Développement du modèle MobileNetV2-UNet
+- **MLflow** : Gestion des expériences et versioning des modèles
+- **NumPy**, **Pandas** : Manipulation de données
+- **Pillow**, **OpenCV** : Traitement d'images
+
+### **Backend & API**
+- **FastAPI** : Framework web asynchrone pour l'API REST
+- **Uvicorn** / **Gunicorn** : Serveurs ASGI pour la production
+- **Pydantic** : Validation et sérialisation des données
+
+### **Frontend & Interface**
+- **Next.js 15.3** : Framework React pour l'interface utilisateur
+- **Bootstrap 5.3** : Framework CSS responsive
+- **Fetch API** : Communication avec l'API backend
+
+### **Déploiement & Infrastructure**
+- **Railway** : Déploiement cloud de l'API FastAPI
+- **Vercel** : Déploiement de l'application Next.js
+- **AWS S3** : Stockage des artefacts MLflow
+
+## 📊 Performances du Modèle
+
+### 🎯 **Résultats Globaux**
+- **Mean IoU** : **63.25%**
+- **Précision pixel-wise** : **87.95%**
+- **Convergence** : 18 époques (~2h d'entraînement)
+- **Paramètres** : 5.4M (3.6M entraînables)
+
+### 🏆 **Performance par Catégorie (IoU)**
+| Catégorie | IoU | Importance Navigation |
+|-----------|-----|----------------------|
+| 🛣️ **flat** | **90.8%** | 🔴 Critique |
+| ☁️ **sky** | **83.4%** | 🟢 Contextuel |
+| 🌳 **nature** | **79.8%** | 🟢 Contextuel |
+| 🚗 **vehicle** | **74.7%** | 🔴 Critique |
+| 🏢 **construction** | **74.5%** | 🟡 Important |
+| ⚫ **void** | **64.3%** | ⚫ Technique |
+| 👤 **human** | **32.0%** | 🔴 Critique |
+| 🚦 **object** | **6.5%** | 🟡 Important |
+
+### ✅ **Points Forts**
+- **Excellence** sur les surfaces planes et structures dominantes
+- **Performance temps réel** compatible avec les contraintes embarquées
+- **Architecture optimisée** pour les ressources limitées
+
+### ⚠️ **Axes d'Amélioration**
+- **Détection des objets fins** (panneaux, poteaux) à améliorer
+- **Segmentation des humains** variable selon le contexte
+- **Entraînement progressif** avec dégelage de l'encodeur envisageable
+
+## 🚀 Installation et Déploiement
+
+### **Prérequis**
+- Python 3.10+
 - Node.js 16+
-- npm ou yarn
+- Compte MLflow avec accès S3
 
-### API (Backend)
+### **Backend API FastAPI**
+
+Pour lancer l'API FastAPI, suivez ces étapes :
+
 ```bash
 # Cloner le dépôt
-git clone https://github.com/DavidScanu/oc-ai-engineer-p08-systeme-voiture-autonome.git
-cd oc-ai-engineer-p08-systeme-voiture-autonome/api
+git clone https://github.com/DavidScanu/oc-ai-engineer-p08-images-systeme-voiture-autonome.git
+cd oc-ai-engineer-p08-images-systeme-voiture-autonome/app/backend
 
 # Créer un environnement virtuel
 python -m venv venv
-source venv/bin/activate  # Sur Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
 # Installer les dépendances
 pip install -r requirements.txt
 
-# Lancer l'API en local
-uvicorn app.main:app --reload
+# Configurer les variables d'environnement
+export MLFLOW_TRACKING_URI="your-mlflow-uri"
+export AWS_ACCESS_KEY_ID="your-access-key"
+export AWS_SECRET_ACCESS_KEY="your-secret-key"
+export RUN_ID="your-experiment-run-id"
+export FRONTEND_URL=http://localhost:3000
+export PORT=8000
+
+# Lancer l'API
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-### Frontend
+### **Frontend Next.js**
+
+Pour lancer l'interface utilisateur, suivez ces étapes :
+
 ```bash
 cd ../frontend
 
 # Installer les dépendances
 npm install
 
-# Lancer l'application en développement
+# Configurer l'URL de l'API
+export NEXT_PUBLIC_API_URL="http://localhost:8000"
+
+# Lancer en développement
 npm run dev
 ```
 
-## 🏆 Démonstration
+## 📋 Livrables
 
-- **API** : [https://oc-p8-segmentation-api.herokuapp.com/docs](https://oc-p8-segmentation-api.herokuapp.com/docs)
-- **Frontend** : [https://oc-p8-segmentation-frontend.herokuapp.com](https://oc-p8-segmentation-frontend.herokuapp.com)
+### **Développement & Code**
+- **Code complet** : [GitHub Repository](https://github.com/DavidScanu/oc-ai-engineer-p08-images-systeme-voiture-autonome)
+- **Notebook de développement** : [Google Colab](https://colab.research.google.com/drive/1jZ2tdEyJ2xaERUCwyQ5juwPJrEyIAtBN?usp=sharing)
 
-## 📊 Résultats
+### **Applications Déployées**
+- **API FastAPI de production** : Déployée sur Railway (URL non-protégée disponible sur demande)
+- **Interface Next.js** : Déployée sur Vercel (URL non-protégée disponible sur demande)
 
-Le modèle de segmentation atteint les performances suivantes sur le jeu de test :
-- **IoU moyen** : 
-- **Précision** : 
-- **Recall** : 
+### **Documentation**
+- **Rapport technique** : [Google Docs](https://docs.google.com/document/d/1ACjrsOGwafw-D72CgmbF6DkU7bktG7OnPxmPL99inCU/edit?usp=sharing)
+- **Article technique complet** : [dev.to](https://dev.to/davidscanu/segmentation-dimages-pour-pour-le-systeme-embarque-dune-voiture-autonome-2f5e/)
+- **Support de présentation** : [Google Slides](https://docs.google.com/presentation/d/10sbXJKSd5XwDln6k0y3O-i1Ev7iUPg58iz36Pi6NGkk/edit?usp=sharing)
 
-Ces résultats démontrent la capacité du modèle à identifier correctement les différentes catégories d'objets dans des conditions variées.
 
-## 👋 À propos
+## 🔮 Perspectives d'Évolution
 
-Projet développé par [David Scanu](https://www.linkedin.com/in/davidscanu14/) dans le cadre du parcours [AI Engineer](https://openclassrooms.com/fr/paths/795-ai-engineer) d'OpenClassrooms : **Projet 8 - Traitez les images pour le système embarqué d'une voiture autonome**.
+### **Améliorations Modèle**
+- **Entraînement progressif** : Dégelage de l'encodeur en phase 2
+- **Augmentation avancée** : Simulation météorologique (pluie, brouillard)
+- **Architecture multi-échelles** : Amélioration de la robustesse
+
+### **Optimisations Système**
+- **Authentification API** : Sécurisation des endpoints
+- **Cache intelligent** : Optimisation des temps de réponse
+- **Monitoring avancé** : Métriques de performance en production
+
+### **Intégration Industrielle**
+- **Fusion multi-sensorielle** : Combinaison avec radar/lidar
+- **Optimisation embarquée** : Quantization et pruning
+- **Pipeline temps réel** : Traitement vidéo en continu
+
+---
+
+## 👋 À Propos
+
+**Projet développé par [David Scanu](https://www.linkedin.com/in/davidscanu14/)** dans le cadre du parcours [AI Engineer](https://openclassrooms.com/fr/paths/795-ai-engineer) d'OpenClassrooms.
