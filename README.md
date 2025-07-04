@@ -108,7 +108,38 @@ oc-ai-engineer-p08-images-systeme-voiture-autonome/
 - **Vercel** : Déploiement de l'application Next.js
 - **AWS S3** : Stockage des artefacts MLflow
 
-## 📊 Performances du Modèle
+## 🏗️ Architecture du modèle de segmentation d'images urbaines
+
+### 🔗 Architecture Hybride en Forme de U
+
+Notre modèle combine la puissance de **MobileNetV2** (encodeur) avec la structure **U-Net** (décodeur) pour une segmentation sémantique optimisée embarquée.
+
+![Architecture MobileNetV2-UNet](images/architecture-mobilenetv2-unet-hd.png)
+
+### 🔽 **Encodeur : MobileNetV2 (Gelé)**
+- **Backbone pré-entraîné** sur ImageNet pour transfer learning efficace
+- **Extraction multi-échelle** à 4 niveaux de résolution :
+  - 112×112 → 56×56 → 28×28 → 14×14 → **Bottleneck 7×7**
+- **Optimisé mobile** : Depthwise separable convolutions pour efficacité
+
+### 🔼 **Décodeur : Structure U-Net**
+- **Reconstruction progressive** via convolutions transposées
+- **Skip connections** : Préservation des détails spatiaux fins
+- **Pipeline par niveau** : Conv2DTranspose → BatchNorm → ReLU → Concatenate
+
+### ⚡ **Spécifications Techniques**
+- **Entrée** : Images 224×224×3 (redimensionnées depuis 2048×1024)
+- **Sortie** : Masque de segmentation 224×224×8 classes
+- **Paramètres** : 5.4M total (3.6M entraînables, 1.8M gelés)
+- **Activation finale** : Softmax pour classification multi-classe
+
+### 🎯 **Avantages de cette Architecture**
+- **Efficacité embarquée** : Conçu pour ressources limitées
+- **Transfer learning robuste** : Convergence rapide et stable
+- **Préservation des détails** : Skip connections critiques pour segmentation précise
+- **Performance temps réel** : Compatible contraintes véhicule autonome
+
+## 📊 Performances du modèle
 
 ### 🎯 **Résultats Globaux**
 - **Mean IoU** : **63.25%**
@@ -116,7 +147,7 @@ oc-ai-engineer-p08-images-systeme-voiture-autonome/
 - **Convergence** : 18 époques (~2h d'entraînement)
 - **Paramètres** : 5.4M (3.6M entraînables)
 
-### 🏆 **Performance par Catégorie (IoU)**
+### 🏆 **Performance par catégorie (IoU)**
 | Catégorie | IoU | Importance Navigation |
 |-----------|-----|----------------------|
 | 🛣️ **flat** | **90.8%** | 🔴 Critique |
@@ -128,17 +159,17 @@ oc-ai-engineer-p08-images-systeme-voiture-autonome/
 | 👤 **human** | **32.0%** | 🔴 Critique |
 | 🚦 **object** | **6.5%** | 🟡 Important |
 
-### ✅ **Points Forts**
+### ✅ **Points forts**
 - **Excellence** sur les surfaces planes et structures dominantes
 - **Performance temps réel** compatible avec les contraintes embarquées
 - **Architecture optimisée** pour les ressources limitées
 
-### ⚠️ **Axes d'Amélioration**
+### ⚠️ **Axes d'amélioration**
 - **Détection des objets fins** (panneaux, poteaux) à améliorer
 - **Segmentation des humains** variable selon le contexte
 - **Entraînement progressif** avec dégelage de l'encodeur envisageable
 
-## 🚀 Installation et Déploiement
+## 🚀 Installation en local
 
 ### **Prérequis**
 - Python 3.10+
@@ -146,6 +177,10 @@ oc-ai-engineer-p08-images-systeme-voiture-autonome/
 - Compte MLflow avec accès S3
 
 ### **Backend API FastAPI**
+
+L'API FastAPI permet de soumettre des images pour prédiction et de récupérer les résultats de segmentation. Elle est conçue pour être performante et scalable, avec une documentation interactive intégrée.
+
+![Aperçu de la documentation interactive FastAPI](images/backend-fastapi-docs-02-mockup.png)
 
 Pour lancer l'API FastAPI, suivez ces étapes :
 
@@ -174,6 +209,19 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 ### **Frontend Next.js**
+
+L'interface utilisateur Next.js permet de télécharger des images et de visualiser les résultats de segmentation en temps réel. Elle offre une expérience utilisateur fluide et intuitive, avec un design responsive.
+
+#### Aperçu de l'interface utilisateur :
+
+Avant d'envoyer une image, l'interface affiche un message d'accueil et un bouton pour télécharger une image :
+
+![Aperçu de l'interface utilisateur Next.js](images/frontend-future-vision-app-01-home.png)
+
+Après avoir téléchargé une image, l'interface affiche la segmentation réalisée par le modèle :
+
+![Aperçu de l'interface utilisateur Next.js avec segmentation](images/frontend-future-vision-app-01-prediction.png)
+
 
 Pour lancer l'interface utilisateur, suivez ces étapes :
 
@@ -206,19 +254,19 @@ npm run dev
 - **Support de présentation** : [Google Slides](https://docs.google.com/presentation/d/10sbXJKSd5XwDln6k0y3O-i1Ev7iUPg58iz36Pi6NGkk/edit?usp=sharing)
 
 
-## 🔮 Perspectives d'Évolution
+## 🔮 Perspectives d'évolution
 
 ### **Améliorations Modèle**
 - **Entraînement progressif** : Dégelage de l'encodeur en phase 2
 - **Augmentation avancée** : Simulation météorologique (pluie, brouillard)
 - **Architecture multi-échelles** : Amélioration de la robustesse
 
-### **Optimisations Système**
+### **Optimisations système**
 - **Authentification API** : Sécurisation des endpoints
 - **Cache intelligent** : Optimisation des temps de réponse
 - **Monitoring avancé** : Métriques de performance en production
 
-### **Intégration Industrielle**
+### **Intégration industrielle**
 - **Fusion multi-sensorielle** : Combinaison avec radar/lidar
 - **Optimisation embarquée** : Quantization et pruning
 - **Pipeline temps réel** : Traitement vidéo en continu
